@@ -33,7 +33,4 @@ jobs:
       run: |
         aws s3 sync . D:\demo-app\portfolio s3://twsportfolio --delete --acl public-read --exclude ".git/*" --exclude ".github/*" --exclude "README.md" --exclude "LICENSE" --exclude "*.yml" --exclude "*.yaml"
 
-    - name: Invalidate CloudFront cache
-      if: secrets.CLOUDFRONT_DISTRIBUTION_ID
-      run: |
-        aws cloudfront create-invalidation --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} --paths "/*"
+    
