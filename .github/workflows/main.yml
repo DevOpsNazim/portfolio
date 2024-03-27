@@ -14,10 +14,14 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: '14'
+    - name: Install AWS CLI
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y python3-pip
+        pip3 install awscli --upgrade --user
+
+    - name: Configure AWS credentials
+      run: aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }} && aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }} && aws configure set region ${{ secrets.AWS_DEFAULT_REGION }}
 
     - name: Install dependencies
       run: npm install
@@ -26,16 +30,10 @@ jobs:
       run: npm run build
 
     - name: Deploy to S3
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --delete --acl public-read --follow-symlinks --exclude '.git/*' --exclude '.github/*' --exclude 'README.md' --exclude 'LICENSE' --exclude '*.yml' --exclude '*.yaml' ./path/to/build/ s3://twsportfolio
+      run: |
+        aws s3 sync . D:\demo-app\portfolio s3://twsportfolio --delete --acl public-read --exclude ".git/*" --exclude ".github/*" --exclude "README.md" --exclude "LICENSE" --exclude "*.yml" --exclude "*.yaml"
 
     - name: Invalidate CloudFront cache
-      uses: jakejarvis/cloudfront-invalidate-action@master
-      with:
-        cloudfront-distribution-id: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}
-        paths: '/*'
-      env:
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-
+      if: secrets.CLOUDFRONT_DISTRIBUTION_ID
+      run: |
+        aws cloudfront create-invalidation --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} --paths "/*"
