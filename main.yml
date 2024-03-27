@@ -17,4 +17,4 @@ on:
         aws-regin: us-east-1
         
      - name: deploy static website on s3
-       run: aws s3 sync . arn:aws:s3:::twsportfolio --delete
+       run: aws s3 cp . arn:aws:s3:::twsportfolio --delete
