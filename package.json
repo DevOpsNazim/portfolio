@@ -9,9 +9,6 @@
     },
     "dependencies": {
       "node": "^20.x"
-    },
-    "devDependencies": {
-      "aws-cli": "^2.x"
     }
   }
   
