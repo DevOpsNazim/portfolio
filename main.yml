@@ -17,9 +17,7 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: '20.x'
-    - name: Install dependencies
-      run: npm i --force
-
+    
     - name: Install Python3-pip
       run: sudo apt-get update && sudo apt-get install -y python3-pip
 
