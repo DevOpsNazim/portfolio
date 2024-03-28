@@ -8,10 +8,10 @@
       "deploy": "npm run install && npm run build && aws s3 sync ./ s3://twsportfolio --delete --acl public-read"
     },
     "dependencies": {
-      "node": "^14.0.0"
+      "node": "^20.x"
     },
     "devDependencies": {
-      "aws-cli": "^1.0.0"
+      "aws-cli": "^2.x"
     }
   }
   
