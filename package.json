@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "description": "Install Node.js, Python3-pip, AWS CLI, and run a build",
     "scripts": {
-      "install": "echo 'Installing Node.js, Python3-pip, and AWS CLI'",
+      "install": "echo 'Installing Node.js, Python3-pip'",
       "build": "echo 'Running build from current folder'",
       "deploy": "npm run install && npm run build && aws s3 sync ./ s3://twsportfolio --delete --acl public-read"
     },
@@ -11,7 +11,7 @@
       "node": "^20.x"
     },
     "devDependencies": {
-      "aws-cli": "^2.15.32"
+      "aws-cli": "^2.x"
     }
   }
   
