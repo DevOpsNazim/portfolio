@@ -27,11 +27,11 @@ jobs:
     - name: Configure AWS credentials
       run: aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }} && aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }} && aws configure set region ${{ secrets.AWS_DEFAULT_REGION }}
 
-    - name: Build
-      run: npm run build
+    - name: Build_and_Deploy
+      run: npm install
 
-    - name: Deploy to S3
-      run: |
-        aws s3 sync . s3://twsportfolio --delete --acl public-read --exclude ".git/*" --exclude ".github/*" --exclude "README.md" --exclude "LICENSE" --exclude "*.yml" --exclude "*.yaml"
+ #   - name: Deploy to S3
+ #     run: |
+ #       aws s3 sync ./ s3://twsportfolio --delete --acl public-read --exclude ".git/*" --exclude ".github/*" --exclude "README.md" --exclude "LICENSE" --exclude "*.yml" --exclude "*.yaml"
 
     
