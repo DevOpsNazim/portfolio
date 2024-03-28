@@ -13,8 +13,7 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-    - uses: actions/setup-node@v4
-    
+
     - name: Install Python3-pip
       run: sudo apt-get update && sudo apt-get install -y python3-pip
 
@@ -22,9 +21,9 @@ jobs:
       run: sudo pip3 install awscli
 
     - name: Setup Node.js
-      uses: actions/setup-node@v2
+      uses: actions/setup-node@v4
       with:
-        node-version: '18'
+        node-version: '16'
 
     - name: Install Node.js dependencies
       run: npm install
@@ -37,6 +36,6 @@ jobs:
 
     - name: Deploy to S3
       run: |
-        aws s3 sync . D:\demo-app\portfolio s3://twsportfolio --delete --acl public-read --exclude ".git/*" --exclude ".github/*" --exclude "README.md" --exclude "LICENSE" --exclude "*.yml" --exclude "*.yaml"
+        aws s3 sync . s3://twsportfolio --delete --acl public-read --exclude ".git/*" --exclude ".github/*" --exclude "README.md" --exclude "LICENSE" --exclude "*.yml" --exclude "*.yaml"
 
     
