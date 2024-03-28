@@ -13,7 +13,7 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
-      
+
     - name: Setup Node.js
       uses: actions/setup-node@v2
       with:
@@ -37,3 +37,5 @@ jobs:
     - name: Deploy to S3
       run: |
         aws s3 sync . D:\demo-app\portfolio s3://twsportfolio --delete --acl public-read --exclude ".git/*" --exclude ".github/*" --exclude "README.md" --exclude "LICENSE" --exclude "*.yml" --exclude "*.yaml"
+
+    
