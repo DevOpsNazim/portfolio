@@ -1,7 +1,8 @@
 {
     "name": "install-dependencies",
     "version": "1.0.0",
-    "description": "Install Python3-pip, AWS CLI, and Node.js 18",
+    "main": "index.html",
+    "description": "Install Python3-pip, AWS CLI, and Node.js 16",
     "scripts": {
       "install": "echo 'Dependencies installed'"
     },
@@ -10,7 +11,7 @@
       "awscli": "^1.0.0" 
     },
     "devDependencies": {
-      "node": "^18.0.0" 
+      "node": "^16.0.0" 
     }
   }
   
