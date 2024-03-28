@@ -32,6 +32,6 @@ jobs:
 
     - name: Deploy to S3
       run: |
-           aws s3 sync ./ s3://twsportfolio --delete --acl public-read --exclude ".git/*" --exclude ".github/*" --exclude "README.md" --exclude "LICENSE" --exclude "*.yml" --exclude "*.yaml"
+           aws s3 sync ./ arn:aws:s3:::twsportfolio --delete --acl public-read --exclude ".git/*" --exclude ".github/*" --exclude "README.md" --exclude "LICENSE" --exclude "*.yml" --exclude "*.yaml"
 
     
