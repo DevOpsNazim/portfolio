@@ -32,7 +32,7 @@ jobs:
 
     - name: Deploying website to s3 Bucket
       run: |
-#S          aws s3 sync .  s3://demo-s3-labs --delete --acl public-read 
-          aws s3 sync . s3://demo-s3-labs --delete --acl public-read --exclude ".git/*" --exclude ".github/*" --exclude "README.md"  --exclude "package-lock.json" --exclude "package.json" --exclude "LICENSE" --exclude "*.yml" --exclude "*.yaml"
+#          aws s3 sync .  s3://demo-s3-labs --delete --acl public-read 
+           aws s3 sync . s3://demo-s3-labs --delete --acl public-read --exclude ".git/*" --exclude ".github/*" --exclude "README.md"  --exclude "package-lock.json" --exclude "package.json" --exclude "LICENSE" --exclude "*.yml" --exclude "*.yaml"
 
     
